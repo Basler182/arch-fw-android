@@ -63,5 +63,5 @@
         android:gravity="center"
         android:textSize="20dp"
         android:textColor="#3F51B5"
-        android:onClick="test"/>
+        />
 </LinearLayout>
