@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Archaeological Fieldwork</string>
+
+    <!-- Login Register -->
+    <string name="register_text">New? Register here</string>
+    <string name="btn_login">Login</string>
+    <string name="label_login">Login</string>
+    <string name="label_password">Password</string>
+    <string name="label_email">Email</string>
+
+    <!-- Home -->
+
+    <!-- Settings -->
+
+    <!-- Firestore -->
+
+    <!-- Edit -->
+</resources>

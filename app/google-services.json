@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "4231433131",
+    "project_id": "archaeological-fieldwork-21db8",
+    "storage_bucket": "archaeological-fieldwork-21db8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4231433131:android:651add17dbeda5a4f4a0ee",
+        "android_client_info": {
+          "package_name": "eu.schk.archaeologicalfieldwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4231433131-jte1g2b86p7nd4can810o2m054ifmrs3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbydL2Hsa5bELOV5YafYBmHaEsLlC82P0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4231433131-jte1g2b86p7nd4can810o2m054ifmrs3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4231433131:android:aa10c5bfd5e32c1ef4a0ee",
+        "android_client_info": {
+          "package_name": "eu.schk.placemark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4231433131-jte1g2b86p7nd4can810o2m054ifmrs3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbydL2Hsa5bELOV5YafYBmHaEsLlC82P0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4231433131-jte1g2b86p7nd4can810o2m054ifmrs3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4231433131:android:fb6fba6090aa50e1f4a0ee",
+        "android_client_info": {
+          "package_name": "org.wit.archaeologicalfieldwork"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4231433131-jte1g2b86p7nd4can810o2m054ifmrs3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbydL2Hsa5bELOV5YafYBmHaEsLlC82P0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4231433131-jte1g2b86p7nd4can810o2m054ifmrs3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
