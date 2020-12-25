@@ -1,13 +1,14 @@
-name: Android CI
+name: Android OPS
 
 on:
   push:
-    branches: [ master, dev ] 
-  pull_request: {}
+    branches:
+      - '**'
+      - '!master'
 
 jobs:
-  build:
-
+  main:
+    name: Test & Build
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +27,16 @@ jobs:
       with:
         name: lint-result
         path: app/build/reports/
+   
+  master:
+    name: Create PR
+    needs: main
+    runs-on: ubuntu-latest
+
+    steps:
+        - uses: actions/checkout@v2
+        - name: pull-request
+          uses: repo-sync/pull-request@v2
+          with:
+             destination_branch: "master"
+             github_token: ${{ secrets.GITHUB_TOKEN }}
