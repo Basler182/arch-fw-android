@@ -1,24 +1,24 @@
 package eu.schk.archaeologicalfieldwork.models.placemark
 
 import android.os.Parcelable
-import eu.schk.archaeologicalfieldwork.models.location.LocationModel
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
+
+
+
 @Parcelize
-data class PlacemarkModel(
-    var id : Long = 0,
-    var title: String = "",
-    var description: String = "",
-    var image: String = "",
-    var visited: Boolean = false,
-    var dateVisited: String = "",
-    var userCreated: String = "",
-    var isFavorite : Boolean = false,
-    var rating : Rating = Rating.UNRATED,
-    var location: LocationModel = LocationModel()
-) : Parcelable
+@Entity
+data class PlacemarkModel(@PrimaryKey(autoGenerate = true) var id: Long = 0,
+                          var fbId : String = "",
+                          var title: String = "",
+                          var description: String = "",
+                          var image: String = "",
+                          @Embedded var location : Location = Location()): Parcelable
 
-
-enum class Rating {
-  ONESTAR, TWOSTART, THREESTAR, FOURSTAR, FIVESTAR, UNRATED
-}
+@Parcelize
+data class Location(var lat: Double = 0.0,
+                    var lng: Double = 0.0,
+                    var zoom: Float = 0f) : Parcelable
