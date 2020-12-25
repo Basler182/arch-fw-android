@@ -15,7 +15,7 @@
 
         <activity
             android:name=".views.splash.SplashView"
-            android:label="Splash View"
+            android:label="Archaeological Fieldwork"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

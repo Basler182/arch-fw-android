@@ -6,7 +6,8 @@ import android.content.Intent
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import eu.schk.archaeologicalfieldwork.models.location.LocationModel
+import com.google.firebase.auth.FirebaseAuth
+import eu.schk.archaeologicalfieldwork.models.placemark.Location
 import eu.schk.archaeologicalfieldwork.views.login.LoginView
 import eu.schk.archaeologicalfieldwork.views.register.RegisterView
 import org.jetbrains.anko.AnkoLogger
@@ -24,7 +25,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
   var basePresenter: BasePresenter? = null
 
   fun navigateTo(view: VIEW, code: Int = 0, key: String = "", value: Parcelable? = null) {
-    var intent: Intent = when (view) {
+    val intent: Intent = when (view) {
       VIEW.HOME -> Intent(this, HomeView::class.java)
       VIEW.REGISTER -> Intent(this, RegisterView::class.java)
       VIEW.LOGIN -> Intent(this, LoginView::class.java)
@@ -39,6 +40,10 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     toolbar.title = title
     setSupportActionBar(toolbar)
     supportActionBar?.setDisplayHomeAsUpEnabled(upEnabled)
+    val user = FirebaseAuth.getInstance().currentUser
+    if (user != null) {
+      toolbar.title = "${title}: ${user.email}"
+    }
   }
 
   fun initPresenter(presenter: BasePresenter): BasePresenter {
@@ -64,18 +69,13 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     }
   }
 
-  override fun onRequestPermissionsResult(
-      requestCode: Int,
-      permissions: Array<String>,
-      grantResults: IntArray
-  ) {
-    super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+  override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
     basePresenter?.doRequestPermissionsResult(requestCode, permissions, grantResults)
   }
 
   open fun showPlacemark(placemark: PlacemarkModel) {}
   open fun showPlacemarks(placemarks: List<PlacemarkModel>) {}
-  open fun showLocation(location: LocationModel) {}
+  open fun showLocation(location : Location) {}
   open fun showProgress() {}
   open fun hideProgress() {}
 }
