@@ -11,11 +11,8 @@ class LoginView : BaseView() {
 
   lateinit var presenter: LoginPresenter
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_login)
-    init(toolbar, false)
-    hideProgress()
+  override fun onResume() {
+    super.onResume()
 
     presenter = initPresenter(LoginPresenter(this)) as LoginPresenter
 
@@ -33,6 +30,13 @@ class LoginView : BaseView() {
     }
 
     lnkRegister.setOnClickListener{presenter.showRegister()}
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_login)
+    init(toolbar, false)
+    hideProgress()
   }
 
   override fun showProgress() {
