@@ -37,7 +37,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
   }
 
   override fun update(placemark: PlacemarkModel) {
-    var foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.fbId == placemark.fbId }
+    val foundPlacemark: PlacemarkModel? = placemarks.find { p -> p.fbId == placemark.fbId }
     if (foundPlacemark != null) {
       foundPlacemark.title = placemark.title
       foundPlacemark.description = placemark.description
@@ -65,7 +65,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
       val fileName = File(placemark.image)
       val imageName = fileName.getName()
 
-      var imageRef = st.child(userId + '/' + imageName)
+      val imageRef = st.child(userId + '/' + imageName)
       val baos = ByteArrayOutputStream()
       val bitmap = readImageFromPath(context, placemark.image)
 
