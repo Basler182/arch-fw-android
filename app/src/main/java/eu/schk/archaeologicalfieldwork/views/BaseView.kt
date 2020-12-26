@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
 import eu.schk.archaeologicalfieldwork.models.placemark.Location
+import eu.schk.archaeologicalfieldwork.views.edit.EditView
+import eu.schk.archaeologicalfieldwork.views.location.EditLocationView
 import eu.schk.archaeologicalfieldwork.views.login.LoginView
 import eu.schk.archaeologicalfieldwork.views.register.RegisterView
 import org.jetbrains.anko.AnkoLogger
@@ -17,7 +19,7 @@ const val IMAGE_REQUEST = 1
 const val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  HOME, REGISTER,LOGIN
+  HOME, REGISTER,LOGIN, EDIT, LOCATION
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -29,6 +31,8 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.HOME -> Intent(this, HomeView::class.java)
       VIEW.REGISTER -> Intent(this, RegisterView::class.java)
       VIEW.LOGIN -> Intent(this, LoginView::class.java)
+      VIEW.EDIT -> Intent(this, EditView::class.java)
+      VIEW.LOCATION -> Intent(this, EditLocationView::class.java)
     }
     if (key != "") {
       intent.putExtra(key, value)

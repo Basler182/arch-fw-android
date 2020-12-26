@@ -11,11 +11,11 @@ import org.jetbrains.anko.uiThread
 class HomePresenter (view: BaseView) : BasePresenter(view) {
 
     fun doAddPlacemark() {
-        //view?.navigateTo(VIEW.PLACEMARK)
+        view?.navigateTo(VIEW.EDIT)
     }
 
     fun doEditPlacemark(placemark: PlacemarkModel) {
-        //view?.navigateTo(VIEW.PLACEMARK, 0, "placemark_edit", placemark)
+        view?.navigateTo(VIEW.EDIT, 0, "placemark_edit", placemark)
     }
 
     fun doShowPlacemarksMap() {
