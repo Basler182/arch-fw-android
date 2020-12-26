@@ -18,6 +18,10 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
   lateinit var db: DatabaseReference
   lateinit var st: StorageReference
 
+  init{
+    fetchPlacemarks {  }
+  }
+
   override fun findAll(): List<PlacemarkModel> {
     return placemarks
   }

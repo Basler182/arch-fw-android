@@ -71,9 +71,10 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
     }
   }
 
-  fun cachePlacemark (title: String, description: String) {
+  fun cachePlacemark (title: String, description: String, rating : Float) {
     placemark.title = title;
     placemark.description = description
+    placemark.rating = rating
   }
 
   fun doConfigureMap(m: GoogleMap) {
@@ -91,7 +92,7 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
     view?.showLocation(placemark.location)
   }
 
-  fun doAddOrSave(title: String, description: String, rating: Int) {
+  fun doAddOrSave(title: String, description: String, rating: Float) {
     placemark.title = title
     placemark.description = description
     placemark.rating = rating
