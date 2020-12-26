@@ -50,6 +50,14 @@
             android:value=".views.home.HomeView" />
         </activity>
 
+        <activity
+            android:name=".views.location.EditLocationView"
+            android:label="Edit">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".views.edit.EditView" />
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />

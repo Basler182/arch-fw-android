@@ -36,7 +36,7 @@ class EditView : BaseView(), AnkoLogger {
     presenter = initPresenter (EditPresenter(this)) as EditPresenter
 
     chooseImage.setOnClickListener {
-      presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString())
+      presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
       presenter.doSelectImage()
     }
   }
@@ -44,7 +44,7 @@ class EditView : BaseView(), AnkoLogger {
   override fun showPlacemark(placemark: PlacemarkModel) {
     if (placemarkTitle.text.isEmpty()) placemarkTitle.setText(placemark.title)
     if (description.text.isEmpty())  description.setText(placemark.description)
-    ratingBar.numStars = placemark.rating
+    ratingBar.rating = placemark.rating
     Glide.with(this).load(placemark.image).into(placemarkImage);
 
     chooseImage.text = "Change placemark image"
@@ -58,7 +58,7 @@ class EditView : BaseView(), AnkoLogger {
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
     menuInflater.inflate(R.menu.menu_placemark, menu)
-    if (presenter.edit) menu.getItem(0).setVisible(true)
+    if (presenter.edit) menu.getItem(0).isVisible = true
     return super.onCreateOptionsMenu(menu)
   }
 
@@ -71,7 +71,7 @@ class EditView : BaseView(), AnkoLogger {
         if (placemarkTitle.text.toString().isEmpty()) {
           toast("Please enter placemark title")
         } else {
-          presenter.doAddOrSave(placemarkTitle.text.toString(), description.text.toString(), ratingBar.numStars)
+          presenter.doAddOrSave(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
         }
       }
       R.id.item_cancel -> {
