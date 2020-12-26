@@ -38,7 +38,7 @@
 
         <activity
             android:name=".views.home.HomeView"
-            android:label="Login"
+            android:label="Home"
             android:launchMode="singleTop">
         </activity>
 
@@ -47,7 +47,7 @@
             android:label="Edit">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value=".views.home.HomeView" />
+            android:value="eu.schk.archaeologicalfieldwork.views.home.HomeView" />
         </activity>
 
         <activity
@@ -55,7 +55,16 @@
             android:label="Edit">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".views.edit.EditView" />
+                android:value="eu.schk.archaeologicalfieldwork.views.edit.EditView" />
+        </activity>
+
+        <activity
+            android:name=".views.map.PlacemarkMapView"
+            android:label="Map"
+            android:launchMode="singleTop">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="eu.schk.archaeologicalfieldwork.views.home.HomeView" />
         </activity>
 
         <meta-data

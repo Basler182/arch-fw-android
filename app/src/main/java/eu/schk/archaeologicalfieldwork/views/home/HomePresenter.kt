@@ -19,7 +19,7 @@ class HomePresenter (view: BaseView) : BasePresenter(view) {
     }
 
     fun doShowPlacemarksMap() {
-       // view?.navigateTo(VIEW.MAPS)
+       view?.navigateTo(VIEW.MAP)
     }
 
     fun loadPlacemarks() {

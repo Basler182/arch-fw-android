@@ -42,7 +42,7 @@ class HomeView : BaseView(), PlacemarkListener {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item?.itemId) {
+    when (item.itemId) {
       R.id.item_add -> presenter.doAddPlacemark()
       R.id.item_map -> presenter.doShowPlacemarksMap()
       R.id.item_logout ->presenter.doLogout()

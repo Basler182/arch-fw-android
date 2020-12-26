@@ -11,6 +11,7 @@ import eu.schk.archaeologicalfieldwork.models.placemark.Location
 import eu.schk.archaeologicalfieldwork.views.edit.EditView
 import eu.schk.archaeologicalfieldwork.views.location.EditLocationView
 import eu.schk.archaeologicalfieldwork.views.login.LoginView
+import eu.schk.archaeologicalfieldwork.views.map.PlacemarkMapView
 import eu.schk.archaeologicalfieldwork.views.register.RegisterView
 import org.jetbrains.anko.AnkoLogger
 
@@ -19,7 +20,7 @@ const val IMAGE_REQUEST = 1
 const val LOCATION_REQUEST = 2
 
 enum class VIEW {
-  HOME, REGISTER,LOGIN, EDIT, LOCATION
+  HOME, REGISTER, LOGIN, EDIT, LOCATION, MAP
 }
 
 abstract class BaseView() : AppCompatActivity(), AnkoLogger {
@@ -33,6 +34,7 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
       VIEW.LOGIN -> Intent(this, LoginView::class.java)
       VIEW.EDIT -> Intent(this, EditView::class.java)
       VIEW.LOCATION -> Intent(this, EditLocationView::class.java)
+      VIEW.MAP -> Intent(this, PlacemarkMapView::class.java)
     }
     if (key != "") {
       intent.putExtra(key, value)
