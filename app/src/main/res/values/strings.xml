@@ -7,6 +7,7 @@
     <string name="label_login">Login</string>
     <string name="label_password">Password</string>
     <string name="label_email">Email</string>
+    <string name="change_image">Change placemark image</string>
 
     <!-- Home -->
 

@@ -45,7 +45,7 @@
                 android:layout_width="379dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="13dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="19dp"
                 android:background="@color/colorAccent"
                 android:paddingTop="8dp"
@@ -120,7 +120,7 @@
             <ImageView
                 android:id="@+id/placemarkImage"
                 android:layout_width="401dp"
-                android:layout_height="178dp"
+                android:layout_height="150dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
@@ -132,12 +132,11 @@
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="405dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="150dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <TextView
                 android:id="@+id/textView"
@@ -158,6 +157,31 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/placemarkImage" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visited:"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
+                app:layout_constraintStart_toEndOf="@+id/checkBoxVisited"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxVisited" />
+
+            <CheckBox
+                android:id="@+id/checkBoxVisited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/ratingBar"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
