@@ -25,7 +25,8 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
   var edit = false;
   var locationManualyChanged = false;
   var locationService: FusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(view)
-  val locationRequest = createDefaultLocationRequest()
+  private val locationRequest = createDefaultLocationRequest()
+  private var tempImagePath : String = ""
 
   init {
     if (view.intent.hasExtra("placemark_edit")) {
@@ -48,9 +49,9 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
 
   @SuppressLint("MissingPermission")
   fun doResartLocationUpdates() {
-    var locationCallback = object : LocationCallback() {
+    val locationCallback = object : LocationCallback() {
       override fun onLocationResult(locationResult: LocationResult?) {
-        if (locationResult != null && locationResult.locations != null) {
+        if (locationResult != null) {
           val l = locationResult.locations.last()
           if (!locationManualyChanged) {
             locationUpdate(Location(l.latitude, l.longitude))
@@ -144,6 +145,14 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
         placemark.location = location
         locationUpdate(location)
       }
+      CAMERA_REQUEST ->{
+      }
+    }
+  }
+
+  fun doCamera() {
+    view?.let {
+      tempImagePath = doCamera(view!!, CAMERA_REQUEST)
     }
   }
 }

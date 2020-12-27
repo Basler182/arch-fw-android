@@ -20,6 +20,7 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
 
 
   init {
+    FirebaseDatabase.getInstance().setPersistenceEnabled(true)
     userId = FirebaseAuth.getInstance().currentUser?.uid
     if (userId != null) fetchPlacemarks {  }
   }

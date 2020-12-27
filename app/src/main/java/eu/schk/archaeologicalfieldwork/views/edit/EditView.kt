@@ -38,8 +38,12 @@ class EditView : BaseView(), AnkoLogger {
     presenter = initPresenter (EditPresenter(this)) as EditPresenter
 
     chooseImage.setOnClickListener {
+      chooseImage()
+    }
+
+    chooseCamera.setOnClickListener {
       presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
-      presenter.doSelectImage()
+      presenter.doCamera()
     }
 
     checkBoxVisited.setOnClickListener {
@@ -49,6 +53,11 @@ class EditView : BaseView(), AnkoLogger {
         tv_date.text = ""
       }
     }
+  }
+
+  fun chooseImage() {
+    presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
+    presenter.doSelectImage()
   }
 
   override fun showPlacemark(placemark: PlacemarkModel) {
