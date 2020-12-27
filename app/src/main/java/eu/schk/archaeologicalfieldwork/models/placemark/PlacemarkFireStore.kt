@@ -105,6 +105,8 @@ class PlacemarkFireStore(val context: Context) : PlacemarkStore, AnkoLogger {
     }
     userId = FirebaseAuth.getInstance().currentUser!!.uid
     db = FirebaseDatabase.getInstance().reference
+    db.database.setPersistenceEnabled(true)
+    db.database.setPersistenceCacheSizeBytes(10000L)
     st = FirebaseStorage.getInstance().reference
     placemarks.clear()
     db.child("users").child(userId!!).child("placemarks").addListenerForSingleValueEvent(valueEventListener)
