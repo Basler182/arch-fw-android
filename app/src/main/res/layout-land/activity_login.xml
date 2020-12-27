@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".views.login.LoginView">
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:fitsSystemWindows="true">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/loginscrn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/label_login"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/fstTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_email"
+            app:layout_constraintBottom_toBottomOf="@+id/emailLogin"
+            app:layout_constraintEnd_toStartOf="@+id/emailLogin"
+            app:layout_constraintTop_toTopOf="@+id/emailLogin" />
+
+        <EditText
+            android:id="@+id/emailLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toStartOf="@+id/loginscrn"
+            app:layout_constraintTop_toBottomOf="@+id/loginscrn"
+            tools:ignore="LabelFor" />
+
+        <TextView
+            android:id="@+id/secTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/label_password"
+            app:layout_constraintBottom_toBottomOf="@+id/passwordLogin"
+            app:layout_constraintEnd_toStartOf="@+id/passwordLogin"
+            app:layout_constraintTop_toBottomOf="@+id/emailLogin" />
+
+        <EditText
+            android:id="@+id/passwordLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/emailLogin"
+            app:layout_constraintTop_toBottomOf="@+id/emailLogin"
+            tools:ignore="LabelFor" />
+
+        <Button
+            android:id="@+id/logIn"
+            android:layout_width="212dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/btn_login"
+            app:layout_constraintEnd_toEndOf="@+id/passwordLogin"
+            app:layout_constraintStart_toStartOf="@+id/passwordLogin"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+
+        <TextView
+            android:id="@+id/lnkRegister"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/register_text"
+            android:textColor="#3F51B5"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/logIn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/logIn"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLogin" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            app:layout_constraintBottom_toTopOf="@+id/lnkRegister"
+            app:layout_constraintEnd_toEndOf="@+id/lnkRegister"
+            app:layout_constraintStart_toEndOf="@+id/logIn"
+            app:layout_constraintTop_toTopOf="@+id/emailLogin" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</LinearLayout>
