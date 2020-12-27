@@ -1,5 +1,6 @@
 package eu.schk.archaeologicalfieldwork.views.edit
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -7,6 +8,7 @@ import android.view.MenuItem
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import eu.schk.archaeologicalfieldwork.R
+import eu.schk.archaeologicalfieldwork.helpers.getDate
 import eu.schk.archaeologicalfieldwork.models.placemark.Location
 import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
 import eu.schk.archaeologicalfieldwork.views.BaseView
@@ -39,21 +41,33 @@ class EditView : BaseView(), AnkoLogger {
       presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
       presenter.doSelectImage()
     }
+
+    checkBoxVisited.setOnClickListener {
+      if (checkBoxVisited.isChecked){
+        tv_date.text = getDate()
+      }else{
+        tv_date.text = ""
+      }
+    }
   }
 
   override fun showPlacemark(placemark: PlacemarkModel) {
     if (placemarkTitle.text.isEmpty()) placemarkTitle.setText(placemark.title)
     if (description.text.isEmpty())  description.setText(placemark.description)
+    if(tv_date.text.isEmpty()) tv_date.text = placemark.dateVisited
     ratingBar.rating = placemark.rating
+    checkBoxVisited.isChecked = placemark.dateVisited.isNotEmpty()
+
     Glide.with(this).load(placemark.image).into(placemarkImage);
 
-    chooseImage.text = "Change placemark image"
+    chooseImage.text = getString(R.string.change_image)
     this.showLocation(placemark.location)
   }
 
+  @SuppressLint("SetTextI18n")
   override fun showLocation (location : Location) {
-    lat.setText("%.6f".format(location.lat))
-    lng.setText("%.6f".format(location.lng))
+    lat.text = "%.6f".format(location.lat)
+    lng.text = "%.6f".format(location.lng)
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {

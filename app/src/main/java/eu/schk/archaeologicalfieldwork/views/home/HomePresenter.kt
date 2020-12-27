@@ -1,5 +1,6 @@
 package eu.schk.archaeologicalfieldwork.views.home
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
 import eu.schk.archaeologicalfieldwork.views.BasePresenter
@@ -35,5 +36,12 @@ class HomePresenter (view: BaseView) : BasePresenter(view) {
         FirebaseAuth.getInstance().signOut()
         app.placemarks.clear()
         view?.navigateTo(VIEW.LOGIN)
+    }
+
+    fun debug() {
+        val marks = app.placemarks.findAll()
+        for(mark in marks){
+            Log.wtf("Mark", mark.toString())
+        }
     }
 }

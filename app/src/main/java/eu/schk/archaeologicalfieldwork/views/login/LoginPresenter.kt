@@ -22,7 +22,7 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
 
   fun doLogin(email: String, password: String) {
     view?.showProgress()
-    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(view!!) { task ->
+    auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
       if (task.isSuccessful) {
         if (fireStore != null) {
           fireStore!!.fetchPlacemarks {
@@ -37,6 +37,8 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
         view?.hideProgress()
         view?.toast("Sign Up Failed: ${task.exception?.message}")
       }
+      view?.hideProgress()
+      view?.navigateTo(VIEW.HOME)
     }
   }
 
@@ -45,8 +47,8 @@ class LoginPresenter(view: BaseView) : BasePresenter(view) {
   }
 
   fun isLoggedIn() {
-    var user = auth.currentUser
-    if(user != null) {
+    val user = auth.currentUser?.uid
+    if(user != null && fireStore != null) {
       view?.navigateTo(VIEW.HOME)
     }
   }
