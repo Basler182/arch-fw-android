@@ -18,6 +18,7 @@ import org.jetbrains.anko.AnkoLogger
 
 const val IMAGE_REQUEST = 1
 const val LOCATION_REQUEST = 2
+const val CAMERA_REQUEST = 3
 
 enum class VIEW {
   HOME, REGISTER, LOGIN, EDIT, LOCATION, MAP
