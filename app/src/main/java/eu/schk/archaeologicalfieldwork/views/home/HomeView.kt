@@ -52,6 +52,10 @@ class HomeView : BaseView(), PlacemarkListener {
         return true
       }
     })
+
+    switchFavorites.setOnClickListener {
+        adapter.showFavorites(switchFavorites.isChecked)
+    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {

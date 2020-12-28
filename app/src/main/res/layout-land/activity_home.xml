@@ -21,10 +21,22 @@
             android:layout_height="wrap_content"
             app:titleTextColor="@color/colorPrimary" />
 
-        <SearchView
-            android:id="@+id/searchView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="550dp"
+                android:layout_height="match_parent" >
+            </SearchView>
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchFavorites"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Favorites" />
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
