@@ -1,6 +1,7 @@
 package eu.schk.archaeologicalfieldwork.views.home
 
-import android.util.Log
+import android.R
+import android.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
 import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
 import eu.schk.archaeologicalfieldwork.views.BasePresenter
@@ -9,7 +10,8 @@ import eu.schk.archaeologicalfieldwork.views.VIEW
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 
-class HomePresenter (view: BaseView) : BasePresenter(view) {
+
+class HomePresenter(view: BaseView) : BasePresenter(view) {
 
     fun doAddPlacemark() {
         view?.navigateTo(VIEW.EDIT)
@@ -38,10 +40,25 @@ class HomePresenter (view: BaseView) : BasePresenter(view) {
         view?.navigateTo(VIEW.LOGIN)
     }
 
-    fun debug() {
-        val marks = app.placemarks.findAll()
-        for(mark in marks){
-            Log.wtf("Mark", mark.toString())
-        }
-    }
+  fun doSettings() {
+      var message = "Hello"
+      val user = FirebaseAuth.getInstance().currentUser
+      if (user != null) {
+          message += user.displayName + "\n" + "your email is: " + user.email + "!\n \n \n"
+
+          message += "You have an total amount of placemarks: " + app.placemarks.findAll().size +   "\nYou can delete all placemarks or quit settings."
+      }
+
+      AlertDialog.Builder(view!!)
+          .setTitle("Settings")
+          .setMessage(message)
+          .setPositiveButton("CANCEL") { dialog, which ->
+          }
+          .setNegativeButton("Delete all placemarks"){
+              _, _ ->
+              app.placemarks.clear()
+          }
+          .setIcon(R.drawable.ic_dialog_info)
+          .show()
+  }
 }

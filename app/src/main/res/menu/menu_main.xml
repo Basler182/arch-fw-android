@@ -15,9 +15,9 @@
         app:showAsAction="never"/>
 
     <item
-        android:id="@+id/item_debug"
+        android:id="@+id/item_settings"
         android:icon="@android:drawable/ic_menu_mapmode"
-        android:title="Debug"
+        android:title="Settings"
         app:showAsAction="never"/>
 
     <item
