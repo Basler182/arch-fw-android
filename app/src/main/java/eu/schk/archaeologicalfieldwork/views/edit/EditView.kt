@@ -46,6 +46,13 @@ class EditView : BaseView(), AnkoLogger {
       presenter.doCamera()
     }
 
+    shareButton.setOnClickListener {
+      if(placemarkTitle.text.isNotEmpty() && description.text.isNotEmpty()) presenter.doShare(placemarkTitle.text.toString(), description.text.toString() )
+      else{
+        toast("To share the placemark, it needs a title and description")
+      }
+    }
+
     checkBoxVisited.setOnClickListener {
       if (checkBoxVisited.isChecked){
         tv_date.text = getDate()
@@ -55,7 +62,7 @@ class EditView : BaseView(), AnkoLogger {
     }
   }
 
-  fun chooseImage() {
+  private fun chooseImage() {
     presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
     presenter.doSelectImage()
   }

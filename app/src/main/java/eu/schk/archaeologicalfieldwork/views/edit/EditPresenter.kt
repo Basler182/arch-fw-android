@@ -14,10 +14,12 @@ import eu.schk.archaeologicalfieldwork.helpers.*
 import eu.schk.archaeologicalfieldwork.models.placemark.Location
 import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
 import eu.schk.archaeologicalfieldwork.views.*
+import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.info
 import org.jetbrains.anko.uiThread
 
-class EditPresenter (view: BaseView) : BasePresenter(view) {
+class EditPresenter (view: BaseView) : BasePresenter(view), AnkoLogger {
 
   var map: GoogleMap? = null
   var placemark = PlacemarkModel()
@@ -146,6 +148,10 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
         locationUpdate(location)
       }
       CAMERA_REQUEST ->{
+        info("Picture taken")
+      }
+      SHARE_REQUEST ->{
+        info("Placemark shared")
       }
     }
   }
@@ -154,5 +160,15 @@ class EditPresenter (view: BaseView) : BasePresenter(view) {
     view?.let {
       tempImagePath = doCamera(view!!, CAMERA_REQUEST)
     }
+  }
+
+  fun doShare(title: String, description: String) {
+    val sendIntent: Intent = Intent().apply {
+      action = Intent.ACTION_SEND
+      putExtra(Intent.EXTRA_TEXT, "Hey! Look at this interesting location I found: $title $description")
+      type = "text/plain"
+    }
+    val shareIntent = Intent.createChooser(sendIntent, null)
+    view?.startActivityForResult(shareIntent, SHARE_REQUEST)
   }
 }

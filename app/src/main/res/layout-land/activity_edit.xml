@@ -40,6 +40,17 @@
             android:layout_marginBottom="-148dp">
 
 
+            <ImageButton
+                android:id="@+id/shareButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="480dp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxVisited"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="?attr/actionModeShareDrawable" />
+
             <Button
                 android:id="@+id/chooseCamera"
                 android:layout_width="180dp"
