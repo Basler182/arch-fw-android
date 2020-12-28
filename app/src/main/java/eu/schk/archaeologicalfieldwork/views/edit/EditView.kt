@@ -9,8 +9,8 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import eu.schk.archaeologicalfieldwork.R
 import eu.schk.archaeologicalfieldwork.helpers.getDate
-import eu.schk.archaeologicalfieldwork.models.placemark.Location
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.Location
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.BaseView
 import kotlinx.android.synthetic.main.activity_edit.*
 import org.jetbrains.anko.AnkoLogger
@@ -19,7 +19,7 @@ import org.jetbrains.anko.toast
 class EditView : BaseView(), AnkoLogger {
 
   lateinit var presenter: EditPresenter
-  var placemark = PlacemarkModel()
+  var hillfort = HillfortModel()
   lateinit var map: GoogleMap
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class EditView : BaseView(), AnkoLogger {
     }
 
     chooseCamera.setOnClickListener {
-      presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
+      presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating, comment.text.toString())
       presenter.doCamera()
     }
 
@@ -63,21 +63,22 @@ class EditView : BaseView(), AnkoLogger {
   }
 
   private fun chooseImage() {
-    presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
+    presenter.cachePlacemark(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating, comment.text.toString())
     presenter.doSelectImage()
   }
 
-  override fun showPlacemark(placemark: PlacemarkModel) {
-    if (placemarkTitle.text.isEmpty()) placemarkTitle.setText(placemark.title)
-    if (description.text.isEmpty())  description.setText(placemark.description)
-    if(tv_date.text.isEmpty()) tv_date.text = placemark.dateVisited
-    ratingBar.rating = placemark.rating
-    checkBoxVisited.isChecked = placemark.dateVisited.isNotEmpty()
+  override fun showPlacemark(hillfort: HillfortModel) {
+    if (placemarkTitle.text.isEmpty()) placemarkTitle.setText(hillfort.title)
+    if (description.text.isEmpty())  description.setText(hillfort.description)
+    if(tv_date.text.isEmpty()) tv_date.text = hillfort.dateVisited
+    ratingBar.rating = hillfort.rating
+    checkBoxVisited.isChecked = hillfort.dateVisited.isNotEmpty()
+    if(comment.text.isEmpty()) comment.setText(hillfort.comment)
 
-    Glide.with(this).load(placemark.image).into(placemarkImage);
+    Glide.with(this).load(hillfort.image).into(placemarkImage);
 
     chooseImage.text = getString(R.string.change_image)
-    this.showLocation(placemark.location)
+    this.showLocation(hillfort.location)
   }
 
   @SuppressLint("SetTextI18n")
@@ -99,9 +100,9 @@ class EditView : BaseView(), AnkoLogger {
       }
       R.id.item_save -> {
         if (placemarkTitle.text.toString().isEmpty()) {
-          toast("Please enter placemark title")
+          toast("Please enter hillfort title")
         } else {
-          presenter.doAddOrSave(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating)
+          presenter.doAddOrSave(placemarkTitle.text.toString(), description.text.toString(), ratingBar.rating, comment.text.toString())
         }
       }
       R.id.item_cancel -> {

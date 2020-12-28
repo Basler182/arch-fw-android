@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import eu.schk.archaeologicalfieldwork.R
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.BaseView
 import kotlinx.android.synthetic.main.activity_placemark_maps.*
 
@@ -30,14 +30,14 @@ class PlacemarkMapView : BaseView(), GoogleMap.OnMarkerClickListener {
     }
   }
 
-  override fun showPlacemark(placemark: PlacemarkModel) {
-    currentTitle.text = placemark.title
-    currentDescription.text = placemark.description
-    Glide.with(this).load(placemark.image).into(currentImage);
+  override fun showPlacemark(hillfort: HillfortModel) {
+    currentTitle.text = hillfort.title
+    currentDescription.text = hillfort.description
+    Glide.with(this).load(hillfort.image).into(currentImage);
   }
 
-  override fun showPlacemarks(placemarks: List<PlacemarkModel>) {
-    presenter.doPopulateMap(map, placemarks)
+  override fun showPlacemarks(hillforts: List<HillfortModel>) {
+    presenter.doPopulateMap(map, hillforts)
   }
 
   override fun onMarkerClick(marker: Marker): Boolean {

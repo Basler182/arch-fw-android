@@ -40,62 +40,69 @@
             android:layout_marginBottom="-148dp">
 
 
-            <ImageButton
-                android:id="@+id/shareButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="480dp"
-                app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/checkBoxVisited"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="?attr/actionModeShareDrawable" />
-
-            <Button
-                android:id="@+id/chooseCamera"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:background="@color/colorAccent"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="make photo"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/chooseImage"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/chooseImage"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <Button
-                android:id="@+id/chooseImage"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:background="@color/colorAccent"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:text="Add Image"
-                android:textColor="@color/colorPrimary"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/placemarkTitle"
-                app:layout_constraintStart_toEndOf="@+id/placemarkTitle"
-                app:layout_constraintTop_toTopOf="@+id/placemarkTitle" />
-
             <EditText
-                android:id="@+id/description"
-                android:layout_width="249dp"
+                android:id="@+id/comment"
+                android:layout_width="250dp"
                 android:layout_height="62dp"
-                android:layout_marginTop="8dp"
-                android:hint="Description"
+                android:autofillHints=""
+                android:hint="@string/edit_comment"
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
                 android:padding="8dp"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="@+id/placemarkTitle"
-                app:layout_constraintStart_toStartOf="@+id/placemarkTitle"
+                app:layout_constraintBottom_toBottomOf="@+id/chooseCamera"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/chooseCamera"
+                app:layout_constraintTop_toTopOf="@+id/chooseCamera" />
+
+            <Button
+                android:id="@+id/chooseCamera"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="340dp"
+                android:background="@color/colorAccent"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="@string/edit_camera"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/chooseImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chooseImage"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/chooseImage"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="@string/edit_add_image"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/description"
+                app:layout_constraintTop_toBottomOf="@+id/description" />
+
+            <EditText
+                android:id="@+id/description"
+                android:layout_width="249dp"
+                android:layout_height="62dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:hint="@string/edit_description"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/lat"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/placemarkTitle" />
 
             <EditText
@@ -103,9 +110,9 @@
                 android:layout_width="248dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="65dp"
                 android:autofillHints=""
-                android:hint="Title"
+                android:hint="@string/edit_title"
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
@@ -122,59 +129,62 @@
                 android:id="@+id/lat"
                 android:layout_width="95dp"
                 android:layout_height="19dp"
-                android:layout_marginTop="8dp"
-                android:text="00.000000"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_lat"
                 android:textAlignment="center"
-                app:layout_constraintStart_toStartOf="@+id/textView"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintStart_toEndOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/lng"
                 android:layout_width="92dp"
                 android:layout_height="19dp"
-                android:layout_marginTop="8dp"
-                android:text="00.000000"
+                android:layout_marginStart="8dp"
+                android:text="@string/edit_lng"
                 android:textAlignment="center"
-                app:layout_constraintStart_toStartOf="@+id/lat"
-                app:layout_constraintTop_toBottomOf="@+id/lat" />
+                app:layout_constraintBottom_toBottomOf="@+id/lat"
+                app:layout_constraintStart_toEndOf="@+id/lat"
+                app:layout_constraintTop_toTopOf="@+id/lat" />
 
             <ImageView
                 android:id="@+id/placemarkImage"
-                android:layout_width="401dp"
+                android:layout_width="120dp"
                 android:layout_height="120dp"
-                android:layout_marginTop="5dp"
+                android:contentDescription="@string/edit_pic_of_place"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/chooseCamera"
                 app:layout_constraintStart_toStartOf="@+id/chooseImage"
                 app:layout_constraintTop_toBottomOf="@+id/chooseImage"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@android:drawable/ic_menu_add" />
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
-                android:layout_width="405dp"
-                android:layout_height="120dp"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/placemarkImage"
-                app:layout_constraintStart_toStartOf="@+id/placemarkImage"
-                app:layout_constraintTop_toBottomOf="@+id/placemarkImage" />
+                android:layout_width="250dp"
+                android:layout_height="130dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/placemarkImage"
+                tools:layout_editor_absoluteY="268dp" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="90dp"
                 android:layout_height="24dp"
-                android:layout_marginTop="8dp"
-                android:text="Location"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="64dp"
+                android:text="@string/edit_location"
                 android:textAlignment="center"
-                app:layout_constraintStart_toStartOf="@+id/description"
-                app:layout_constraintTop_toBottomOf="@+id/description" />
+                app:layout_constraintStart_toEndOf="@+id/placemarkTitle"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <RatingBar
                 android:id="@+id/ratingBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/description"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lng" />
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="@+id/lng"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/lat" />
 
             <TextView
                 android:id="@+id/tv_date"
@@ -189,7 +199,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Visited:"
+                android:text="@string/edit_visited"
                 app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
                 app:layout_constraintStart_toEndOf="@+id/checkBoxVisited"
                 app:layout_constraintTop_toTopOf="@+id/checkBoxVisited" />
@@ -200,6 +210,17 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="@+id/ratingBar"
                 app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+            <ImageButton
+                android:id="@+id/shareButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/edit_share"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxVisited"
+                app:srcCompat="?attr/actionModeShareDrawable" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

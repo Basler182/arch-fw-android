@@ -7,10 +7,9 @@ import android.view.MenuItem
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.schk.archaeologicalfieldwork.R
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.BaseView
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.toolbar
 
 class HomeView : BaseView(), PlacemarkListener {
@@ -31,12 +30,12 @@ class HomeView : BaseView(), PlacemarkListener {
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    presenter.loadPlacemarks()
+    presenter.loadHillforts()
   }
 
-  override fun showPlacemarks(placemarks: List<PlacemarkModel>) {
+  override fun showPlacemarks(hillforts: List<HillfortModel>) {
 
-    adapter = PlacemarkAdapter(placemarks.toMutableList(), this)
+    adapter = PlacemarkAdapter(hillforts.toMutableList(), this)
 
     recyclerView.adapter = adapter
     recyclerView.adapter?.notifyDataSetChanged()
@@ -65,20 +64,20 @@ class HomeView : BaseView(), PlacemarkListener {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.item_add -> presenter.doAddPlacemark()
-      R.id.item_map -> presenter.doShowPlacemarksMap()
+      R.id.item_add -> presenter.doAddHillfort()
+      R.id.item_map -> presenter.doShowHillfortsMap()
       R.id.item_logout -> presenter.doLogout()
       R.id.item_settings -> presenter.doSettings()
     }
     return super.onOptionsItemSelected(item)
   }
 
-  override fun onPlacemarkClick(placemark: PlacemarkModel) {
-    presenter.doEditPlacemark(placemark)
+  override fun onPlacemarkClick(hillfort: HillfortModel) {
+    presenter.doEditHillfort(hillfort)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    presenter.loadPlacemarks()
+    presenter.loadHillforts()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

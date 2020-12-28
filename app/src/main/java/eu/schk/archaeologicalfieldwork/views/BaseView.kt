@@ -1,13 +1,13 @@
 package eu.schk.archaeologicalfieldwork.views
 
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.home.HomeView
 import android.content.Intent
 import android.os.Parcelable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.firebase.auth.FirebaseAuth
-import eu.schk.archaeologicalfieldwork.models.placemark.Location
+import eu.schk.archaeologicalfieldwork.models.hillfort.Location
 import eu.schk.archaeologicalfieldwork.views.edit.EditView
 import eu.schk.archaeologicalfieldwork.views.location.EditLocationView
 import eu.schk.archaeologicalfieldwork.views.login.LoginView
@@ -81,8 +81,8 @@ abstract class BaseView() : AppCompatActivity(), AnkoLogger {
     basePresenter?.doRequestPermissionsResult(requestCode, permissions, grantResults)
   }
 
-  open fun showPlacemark(placemark: PlacemarkModel) {}
-  open fun showPlacemarks(placemarks: List<PlacemarkModel>) {}
+  open fun showPlacemark(hillfort: HillfortModel) {}
+  open fun showPlacemarks(hillforts: List<HillfortModel>) {}
   open fun showLocation(location : Location) {}
   open fun showProgress() {}
   open fun hideProgress() {}

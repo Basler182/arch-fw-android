@@ -16,6 +16,7 @@
         <activity
             android:name=".views.splash.SplashView"
             android:label="Archaeological Fieldwork"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen.Custom"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

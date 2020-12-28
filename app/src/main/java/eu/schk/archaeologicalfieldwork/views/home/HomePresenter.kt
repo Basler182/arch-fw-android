@@ -3,7 +3,7 @@ package eu.schk.archaeologicalfieldwork.views.home
 import android.R
 import android.app.AlertDialog
 import com.google.firebase.auth.FirebaseAuth
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.BasePresenter
 import eu.schk.archaeologicalfieldwork.views.BaseView
 import eu.schk.archaeologicalfieldwork.views.VIEW
@@ -13,50 +13,57 @@ import org.jetbrains.anko.uiThread
 
 class HomePresenter(view: BaseView) : BasePresenter(view) {
 
-    fun doAddPlacemark() {
+    fun doAddHillfort() {
         view?.navigateTo(VIEW.EDIT)
     }
 
-    fun doEditPlacemark(placemark: PlacemarkModel) {
-        view?.navigateTo(VIEW.EDIT, 0, "placemark_edit", placemark)
+    fun doEditHillfort(hillfort: HillfortModel) {
+        view?.navigateTo(VIEW.EDIT, 0, "placemark_edit", hillfort)
     }
 
-    fun doShowPlacemarksMap() {
+    fun doShowHillfortsMap() {
        view?.navigateTo(VIEW.MAP)
     }
 
-    fun loadPlacemarks() {
+    fun loadHillforts() {
         doAsync {
-            val placemarks = app.placemarks.findAll()
+            val hillforts = app.hillforts.findAll()
             uiThread {
-                view?.showPlacemarks(placemarks)
+                view?.showPlacemarks(hillforts)
             }
         }
     }
 
     fun doLogout() {
         FirebaseAuth.getInstance().signOut()
-        app.placemarks.clear()
+        app.hillforts.clear()
         view?.navigateTo(VIEW.LOGIN)
     }
 
   fun doSettings() {
       var message = "Hello"
+      var hillforts = app.hillforts.findAll()
+      var countVisited = 0
+      for(hillfort in hillforts){
+          if(hillfort.dateVisited.isNotEmpty()){
+              countVisited++
+          }
+      }
       val user = FirebaseAuth.getInstance().currentUser
       if (user != null) {
           message += user.displayName + "\n" + "your email is: " + user.email + "!\n \n \n"
 
-          message += "You have an total amount of placemarks: " + app.placemarks.findAll().size +   "\nYou can delete all placemarks or quit settings."
+          message += "You have an total amount of hillforts: " + hillforts.size +  "\n And you visited: $countVisited hillforts already. \n"+  "\nYou can delete all hillforts or quit settings."
       }
 
       AlertDialog.Builder(view!!)
           .setTitle("Settings")
           .setMessage(message)
-          .setPositiveButton("CANCEL") { dialog, which ->
+          .setPositiveButton("CANCEL") { _, _ ->
           }
-          .setNegativeButton("Delete all placemarks"){
+          .setNegativeButton("Delete all hillforts"){
               _, _ ->
-              app.placemarks.clear()
+              app.hillforts.clear()
           }
           .setIcon(R.drawable.ic_dialog_info)
           .show()
