@@ -32,3 +32,5 @@ The Pipline gets triggered when a new push comes into the develop-branch. The pi
 Splash Screen              |  Home Screen
 :-------------------------:|:-------------------------:
 ![](https://github.com/Basler182/arch-fw-android/blob/feat-screens/screens/screen_splash_page.jpg)  |  ![](https://github.com/Basler182/arch-fw-android/blob/feat-screens/screens/screen_home_page.jpg)
+
+[Youtube Demonstration](https://youtu.be/JBNckBcrrxw)
