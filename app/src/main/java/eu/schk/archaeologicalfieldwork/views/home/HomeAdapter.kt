@@ -62,4 +62,18 @@ class PlacemarkAdapter constructor(
         }
         notifyDataSetChanged()
     }
+
+    fun showFavorites(show: Boolean){
+        placemarks.clear()
+        if(show){
+            for(place in placemarksCopy){
+                if(place.rating > 3){
+                    placemarks.add(place)
+                }
+            }
+        }else{
+            placemarks = mutableListOf<PlacemarkModel>().apply { addAll(placemarksCopy) }
+        }
+        notifyDataSetChanged()
+    }
 }
