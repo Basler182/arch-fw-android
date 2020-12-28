@@ -1,6 +1,6 @@
 # Archaeological Fieldwork Android Kotlin App
 ![Android Build](https://github.com/Basler182/arch-fw-android/workflows/Android%20OPS/badge.svg)
-
+<img src="https://github.com/Basler182/arch-fw-android/blob/feat-screens/screens/screen_app_icon.jpg">
 
 ## Build
 
@@ -22,3 +22,10 @@ The code is structured based on MVP architeccture and clean architecture with th
 ## Continous integration/delivery
 
 [Github actions](https://github.com/features/actions) are used as CI/CD. 
+The P
+
+## Screens
+
+Splash Screen              |  Home Screen
+:-------------------------:|:-------------------------:
+![](https://github.com/Basler182/arch-fw-android/blob/feat-screens/screens/screen_splash_page.jpg)  |  ![](https://github.com/Basler182/arch-fw-android/blob/feat-screens/screens/screen_home_page.jpg)
