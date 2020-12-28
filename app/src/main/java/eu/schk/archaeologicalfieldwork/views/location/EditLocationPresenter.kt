@@ -6,7 +6,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import eu.schk.archaeologicalfieldwork.models.placemark.Location
+import eu.schk.archaeologicalfieldwork.models.hillfort.Location
 import eu.schk.archaeologicalfieldwork.views.BasePresenter
 import eu.schk.archaeologicalfieldwork.views.BaseView
 

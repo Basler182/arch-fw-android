@@ -1,21 +1,18 @@
 package eu.schk.archaeologicalfieldwork.main
 
 import android.app.Application
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkFireStore
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortFireStore
 
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkStore
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortStore
 import org.jetbrains.anko.AnkoLogger
-import org.jetbrains.anko.info
 
 
 class MainApp : Application(), AnkoLogger {
 
-  lateinit var placemarks: PlacemarkStore
+  lateinit var hillforts: HillfortStore
 
   override fun onCreate() {
     super.onCreate()
-    placemarks = PlacemarkFireStore(applicationContext)
-
-    info("Placemark started")
+    hillforts = HillfortFireStore(applicationContext)
   }
 }

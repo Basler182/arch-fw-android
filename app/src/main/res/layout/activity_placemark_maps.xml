@@ -57,7 +57,7 @@
                     app:layout_constraintStart_toEndOf="@+id/currentTitle"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:srcCompat="@tools:sample/backgrounds/scenic"
-                    android:contentDescription="Placemark Picture" />
+                    android:contentDescription="Hillfort Picture" />
 
                 <TextView
                     android:id="@+id/currentTitle"

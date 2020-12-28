@@ -1,25 +1,27 @@
 package eu.schk.archaeologicalfieldwork.views.home
 
+import android.graphics.Color.GREEN
+import android.graphics.Color.WHITE
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import eu.schk.archaeologicalfieldwork.R
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import kotlinx.android.synthetic.main.card_placemark.view.*
 
 
 interface PlacemarkListener {
-    fun onPlacemarkClick(placemark: PlacemarkModel)
+    fun onPlacemarkClick(hillfort: HillfortModel)
 }
 
 class PlacemarkAdapter constructor(
-    private var placemarks: MutableList<PlacemarkModel>,
+    private var hillforts: MutableList<HillfortModel>,
     private val listener: PlacemarkListener
 ) : RecyclerView.Adapter<PlacemarkAdapter.MainHolder>() {
 
-    private var placemarksCopy = mutableListOf<PlacemarkModel>().apply { addAll(placemarks) }
+    private var hillfortsCopy = mutableListOf<HillfortModel>().apply { addAll(hillforts) }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         return MainHolder(
@@ -32,31 +34,31 @@ class PlacemarkAdapter constructor(
     }
 
     override fun onBindViewHolder(holder: MainHolder, position: Int) {
-        val placemark = placemarks[holder.adapterPosition]
+        val placemark = hillforts[holder.adapterPosition]
         holder.bind(placemark, listener)
     }
 
-    override fun getItemCount(): Int = placemarks.size
+    override fun getItemCount(): Int = hillforts.size
 
     class MainHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(placemark: PlacemarkModel, listener: PlacemarkListener) {
-            itemView.placemarkTitle.text = placemark.title
-            itemView.description.text = placemark.description
-            Glide.with(itemView.context).load(placemark.image).into(itemView.imageIcon);
-            itemView.setOnClickListener { listener.onPlacemarkClick(placemark) }
+        fun bind(hillfort: HillfortModel, listener: PlacemarkListener) {
+            itemView.placemarkTitle.text = hillfort.title
+            itemView.description.text = hillfort.description
+            Glide.with(itemView.context).load(hillfort.image).into(itemView.imageIcon);
+            itemView.setOnClickListener { listener.onPlacemarkClick(hillfort) }
         }
     }
 
     fun filter(text : String){
-        placemarks.clear()
+        hillforts.clear()
         if(text.isEmpty()) {
-            placemarks = mutableListOf<PlacemarkModel>().apply { addAll(placemarksCopy) }
+            hillforts = mutableListOf<HillfortModel>().apply { addAll(hillfortsCopy) }
         }
         else{
-            for(place in placemarksCopy){
+            for(place in hillfortsCopy){
                 if(text.contains(place.title, ignoreCase = true)){
-                    placemarks.add(place)
+                    hillforts.add(place)
                 }
             }
         }
@@ -64,15 +66,15 @@ class PlacemarkAdapter constructor(
     }
 
     fun showFavorites(show: Boolean){
-        placemarks.clear()
+        hillforts.clear()
         if(show){
-            for(place in placemarksCopy){
+            for(place in hillfortsCopy){
                 if(place.rating > 3){
-                    placemarks.add(place)
+                    hillforts.add(place)
                 }
             }
         }else{
-            placemarks = mutableListOf<PlacemarkModel>().apply { addAll(placemarksCopy) }
+            hillforts = mutableListOf<HillfortModel>().apply { addAll(hillfortsCopy) }
         }
         notifyDataSetChanged()
     }

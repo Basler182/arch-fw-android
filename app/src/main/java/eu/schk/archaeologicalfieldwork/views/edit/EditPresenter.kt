@@ -11,8 +11,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import eu.schk.archaeologicalfieldwork.helpers.*
-import eu.schk.archaeologicalfieldwork.models.placemark.Location
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.Location
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.*
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.doAsync
@@ -22,7 +22,7 @@ import org.jetbrains.anko.uiThread
 class EditPresenter (view: BaseView) : BasePresenter(view), AnkoLogger {
 
   var map: GoogleMap? = null
-  var placemark = PlacemarkModel()
+  var hillfort = HillfortModel()
   var defaultLocation = Location(52.245696, -7.139102, 15f)
   var edit = false;
   var locationManualyChanged = false;
@@ -33,8 +33,8 @@ class EditPresenter (view: BaseView) : BasePresenter(view), AnkoLogger {
   init {
     if (view.intent.hasExtra("placemark_edit")) {
       edit = true
-      placemark = view.intent.extras?.getParcelable<PlacemarkModel>("placemark_edit")!!
-      view.showPlacemark(placemark)
+      hillfort = view.intent.extras?.getParcelable<HillfortModel>("placemark_edit")!!
+      view.showPlacemark(hillfort)
     } else {
       if (checkLocationPermissions(view)) {
         doSetCurrentLocation()
@@ -74,37 +74,39 @@ class EditPresenter (view: BaseView) : BasePresenter(view), AnkoLogger {
     }
   }
 
-  fun cachePlacemark (title: String, description: String, rating : Float) {
-    placemark.title = title;
-    placemark.description = description
-    placemark.rating = rating
+  fun cachePlacemark (title: String, description: String, rating : Float, comment: String) {
+    hillfort.title = title;
+    hillfort.description = description
+    hillfort.rating = rating
+    hillfort.comment = comment
   }
 
   fun doConfigureMap(m: GoogleMap) {
     map = m
-    locationUpdate(placemark.location)
+    locationUpdate(hillfort.location)
   }
 
   fun locationUpdate(location: Location) {
-    placemark.location = location
-    placemark.location.zoom = 15f
+    hillfort.location = location
+    hillfort.location.zoom = 15f
     map?.clear()
-    val options = MarkerOptions().title(placemark.title).position(LatLng(placemark.location.lat, placemark.location.lng))
+    val options = MarkerOptions().title(hillfort.title).position(LatLng(hillfort.location.lat, hillfort.location.lng))
     map?.addMarker(options)
-    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(placemark.location.lat, placemark.location.lng), placemark.location.zoom))
-    view?.showLocation(placemark.location)
+    map?.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(hillfort.location.lat, hillfort.location.lng), hillfort.location.zoom))
+    view?.showLocation(hillfort.location)
   }
 
-  fun doAddOrSave(title: String, description: String, rating: Float) {
-    placemark.title = title
-    placemark.description = description
-    placemark.rating = rating
-    placemark.dateVisited = getDate()
+  fun doAddOrSave(title: String, description: String, rating: Float, comment: String) {
+    hillfort.title = title
+    hillfort.description = description
+    hillfort.rating = rating
+    hillfort.dateVisited = getDate()
+    hillfort.comment = comment
     doAsync {
       if (edit) {
-        app.placemarks.update(placemark)
+        app.hillforts.update(hillfort)
       } else {
-        app.placemarks.create(placemark)
+        app.hillforts.create(hillfort)
       }
       uiThread {
         view?.finish()
@@ -118,7 +120,7 @@ class EditPresenter (view: BaseView) : BasePresenter(view), AnkoLogger {
 
   fun doDelete() {
     doAsync {
-      app.placemarks.delete(placemark)
+      app.hillforts.delete(hillfort)
       uiThread {
         view?.finish()
       }
@@ -133,18 +135,18 @@ class EditPresenter (view: BaseView) : BasePresenter(view), AnkoLogger {
 
   fun doSetLocation() {
     locationManualyChanged = true;
-    view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(placemark.location.lat, placemark.location.lng, placemark.location.zoom))
+    view?.navigateTo(VIEW.LOCATION, LOCATION_REQUEST, "location", Location(hillfort.location.lat, hillfort.location.lng, hillfort.location.zoom))
   }
 
   override fun doActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
     when (requestCode) {
       IMAGE_REQUEST -> {
-        placemark.image = data.data.toString()
-        view?.showPlacemark(placemark)
+        hillfort.image = data.data.toString()
+        view?.showPlacemark(hillfort)
       }
       LOCATION_REQUEST -> {
         val location = data.extras?.getParcelable<Location>("location")!!
-        placemark.location = location
+        hillfort.location = location
         locationUpdate(location)
       }
       CAMERA_REQUEST ->{
