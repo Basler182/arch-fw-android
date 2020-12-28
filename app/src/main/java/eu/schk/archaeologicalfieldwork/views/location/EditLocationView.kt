@@ -1,12 +1,13 @@
 package eu.schk.archaeologicalfieldwork.views.location
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import eu.schk.archaeologicalfieldwork.R
-import eu.schk.archaeologicalfieldwork.models.placemark.Location
+import eu.schk.archaeologicalfieldwork.models.hillfort.Location
 import eu.schk.archaeologicalfieldwork.views.BaseView
 import kotlinx.android.synthetic.main.activity_map.*
 
@@ -30,9 +31,10 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
     }
   }
 
+  @SuppressLint("SetTextI18n")
   override fun showLocation(location: Location) {
-    lat.setText("%.6f".format(location.lat))
-    lng.setText("%.6f".format(location.lng))
+    lat.text = "%.6f".format(location.lat)
+    lng.text = "%.6f".format(location.lng)
   }
 
   override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -41,7 +43,7 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item?.itemId) {
+    when (item.itemId) {
       R.id.item_save -> {
         presenter.doSave()
       }
@@ -51,9 +53,10 @@ class EditLocationView : BaseView(), GoogleMap.OnMarkerDragListener, GoogleMap.O
 
   override fun onMarkerDragStart(marker: Marker) {}
 
+  @SuppressLint("SetTextI18n")
   override fun onMarkerDrag(marker: Marker) {
-    lat.setText("%.6f".format(marker.position.latitude))
-    lng.setText("%.6f".format(marker.position.longitude))
+    lat.text = "%.6f".format(marker.position.latitude)
+    lng.text = "%.6f".format(marker.position.longitude)
   }
 
   override fun onMarkerDragEnd(marker: Marker) {

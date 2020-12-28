@@ -4,18 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import eu.schk.archaeologicalfieldwork.R
-import eu.schk.archaeologicalfieldwork.models.placemark.PlacemarkModel
+import eu.schk.archaeologicalfieldwork.models.hillfort.HillfortModel
 import eu.schk.archaeologicalfieldwork.views.BaseView
 import kotlinx.android.synthetic.main.activity_home.*
-
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.toolbar
 
 class HomeView : BaseView(), PlacemarkListener {
 
   lateinit var presenter: HomePresenter
+
+  lateinit var adapter : PlacemarkAdapter
+
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -28,12 +30,31 @@ class HomeView : BaseView(), PlacemarkListener {
 
     val layoutManager = LinearLayoutManager(this)
     recyclerView.layoutManager = layoutManager
-    presenter.loadPlacemarks()
+    presenter.loadHillforts()
   }
 
-  override fun showPlacemarks(placemarks: List<PlacemarkModel>) {
-    recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+  override fun showPlacemarks(hillforts: List<HillfortModel>) {
+
+    adapter = PlacemarkAdapter(hillforts.toMutableList(), this)
+
+    recyclerView.adapter = adapter
     recyclerView.adapter?.notifyDataSetChanged()
+
+    searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+      override fun onQueryTextSubmit(query: String?): Boolean {
+        adapter.filter(query.toString())
+        return true
+      }
+
+      override fun onQueryTextChange(newText: String?): Boolean {
+        adapter.filter(newText.toString())
+        return true
+      }
+    })
+
+    switchFavorites.setOnClickListener {
+        adapter.showFavorites(switchFavorites.isChecked)
+    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,20 +63,21 @@ class HomeView : BaseView(), PlacemarkListener {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    when (item?.itemId) {
-      R.id.item_add -> presenter.doAddPlacemark()
-      R.id.item_map -> presenter.doShowPlacemarksMap()
-      R.id.item_logout ->presenter.doLogout()
+    when (item.itemId) {
+      R.id.item_add -> presenter.doAddHillfort()
+      R.id.item_map -> presenter.doShowHillfortsMap()
+      R.id.item_logout -> presenter.doLogout()
+      R.id.item_settings -> presenter.doSettings()
     }
     return super.onOptionsItemSelected(item)
   }
 
-  override fun onPlacemarkClick(placemark: PlacemarkModel) {
-    presenter.doEditPlacemark(placemark)
+  override fun onPlacemarkClick(hillfort: HillfortModel) {
+    presenter.doEditHillfort(hillfort)
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    presenter.loadPlacemarks()
+    presenter.loadHillforts()
     super.onActivityResult(requestCode, resultCode, data)
   }
 }

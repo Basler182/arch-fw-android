@@ -15,6 +15,12 @@
         app:showAsAction="never"/>
 
     <item
+        android:id="@+id/item_settings"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Settings"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/item_logout"
         android:title="Logout"
         android:visible="true"

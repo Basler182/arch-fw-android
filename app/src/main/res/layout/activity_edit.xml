@@ -40,21 +40,49 @@
             android:layout_marginBottom="-148dp">
 
 
+            <EditText
+                android:id="@+id/comment"
+                android:layout_width="0dp"
+                android:layout_height="62dp"
+                android:layout_marginTop="5dp"
+                android:hint="@string/edit_comment"
+                android:inputType="text"
+                android:maxLength="25"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/checkBoxVisited"
+                android:autofillHints="" />
+
             <Button
-                android:id="@+id/chooseImage"
-                android:layout_width="379dp"
+                android:id="@+id/chooseCamera"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="13dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="19dp"
+                android:layout_marginEnd="8dp"
                 android:background="@color/colorAccent"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
-                android:text="Add Image"
+                android:text="@string/edit_camera"
                 android:textColor="@color/colorPrimary"
                 android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/chooseImage"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/chooseImage" />
+
+            <Button
+                android:id="@+id/chooseImage"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="@string/edit_add_image"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/description"
                 app:layout_constraintTop_toBottomOf="@+id/description" />
 
             <EditText
@@ -63,7 +91,7 @@
                 android:layout_height="62dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:hint="Description"
+                android:hint="@string/edit_description"
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
@@ -73,7 +101,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/lat"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/placemarkTitle" />
+                app:layout_constraintTop_toBottomOf="@+id/placemarkTitle"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/placemarkTitle"
@@ -82,7 +111,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="72dp"
                 android:autofillHints=""
-                android:hint="Title"
+                android:hint="@string/edit_title"
                 android:inputType="text"
                 android:maxLength="25"
                 android:maxLines="1"
@@ -101,7 +130,7 @@
                 android:layout_height="19dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="28dp"
-                android:text="00.000000"
+                android:text="@string/edit_lat"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -112,32 +141,30 @@
                 android:layout_height="19dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="28dp"
-                android:text="00.000000"
+                android:text="@string/edit_lng"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lat" />
 
             <ImageView
                 android:id="@+id/placemarkImage"
-                android:layout_width="401dp"
-                android:layout_height="178dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="5dp"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="5dp"
+                android:contentDescription="@string/edit_pic_of_place"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/chooseImage"
-                app:srcCompat="@mipmap/ic_launcher" />
+                app:srcCompat="@android:drawable/ic_menu_add" />
 
             <com.google.android.gms.maps.MapView
                 android:id="@+id/mapView"
                 android:layout_width="405dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="4dp"
+                android:layout_height="130dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+                app:layout_constraintTop_toBottomOf="@+id/comment" />
 
             <TextView
                 android:id="@+id/textView"
@@ -145,7 +172,7 @@
                 android:layout_height="24dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="84dp"
-                android:text="Location"
+                android:text="@string/edit_location"
                 android:textAlignment="center"
                 app:layout_constraintStart_toEndOf="@+id/placemarkTitle"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -158,6 +185,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/placemarkImage" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView3"
+                app:layout_constraintStart_toEndOf="@+id/textView3"
+                app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edit_visited"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
+                app:layout_constraintStart_toEndOf="@+id/checkBoxVisited"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxVisited" />
+
+            <CheckBox
+                android:id="@+id/checkBoxVisited"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/ratingBar"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+            <ImageButton
+                android:id="@+id/shareButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/checkBoxVisited"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/checkBoxVisited"
+                app:srcCompat="?attr/actionModeShareDrawable"
+                android:contentDescription="@string/edit_share" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

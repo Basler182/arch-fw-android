@@ -7,6 +7,7 @@
     <string name="label_login">Login</string>
     <string name="label_password">Password</string>
     <string name="label_email">Email</string>
+    <string name="change_image">Change hillfort image</string>
 
     <!-- Home -->
 
@@ -15,4 +16,18 @@
     <!-- Firestore -->
 
     <!-- Edit -->
+    <string name="edit_comment">Comment</string>
+    <string name="edit_camera">make photo</string>
+    <string name="edit_add_image">Add Image</string>
+    <string name="edit_description">Description</string>
+    <string name="edit_title">Title</string>
+    <string name="edit_lat">00.000000</string>
+    <string name="edit_lng">00.000000</string>
+    <string name="edit_pic_of_place">Picture of the place</string>
+    <string name="edit_location">Location</string>
+    <string name="edit_visited">Visited:</string>
+    <string name="edit_share">Share place button</string>
+    <string name="splash_logo_desc">Splash Logo showing a pharao</string>
+    <string name="splash_fieldwork">Fieldwork</string>
+    <string name="splash_archaeological">Archaeological</string>
 </resources>
